@@ -15,6 +15,10 @@
         color: gray;
         text-decoration: line-through;
      }
+
+     .bi-x-circle:hover {
+        color: red;
+     }
     </style>
 </head>
 <body class="bg-light">
@@ -22,34 +26,41 @@
     <div class="w-50 shadow-lg rounded mt-5 mx-auto p-4">
         <h2 class="text-center">To Do List</h2>
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-8 ">
                 <input class="form-control" type="text" id="input">
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <button id="btn-save" class="btn btn-primary">Save</button>
             </div>
         </div>
 
         <ul class="mt-5" id="list-container">
-
+            
         </ul>
     </div>
     
 </body>
     <script>
         $(document).ready(function() {
+
             const input = $('#input');
             const listContainer = $('#list-container');
 
             $('#btn-save').click(function(){
-                const li = `<li class="mb-2 border px-4 py-3"> 
+                const li = `<li class="mb-2 d-flex  border px-4 py-3"> 
                                 <input class="check-box" type="checkbox" > <span class="task ms-3"> ${input.val()} </span> 
-                            </li>`
+                                <span class="remove ms-auto"> <i class=" bi bi-x-circle"></i> </span>
+                            </li>`;
                 listContainer.append(li);
                 input.val("");
             })
             listContainer.on('click', '.check-box', function(){
                 $(this).siblings('.task').toggleClass('completed');
+            })
+
+
+            listContainer.on('click', '.remove', function() {
+                $(this).parent().remove();
             })
         })
     </script>
