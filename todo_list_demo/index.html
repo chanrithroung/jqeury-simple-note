@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+     li {
+        list-style: none;
+     }
+     .completed {
+        color: gray;
+        text-decoration: line-through;
+     }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="w-50 shadow-lg rounded mt-5 mx-auto p-4">
+        <h2 class="text-center">To Do List</h2>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <input class="form-control" type="text" id="input">
+            </div>
+            <div class="col-4">
+                <button id="btn-save" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+
+        <ul class="mt-5" id="list-container">
+
+        </ul>
+    </div>
+    
+</body>
+    <script>
+        $(document).ready(function() {
+            const input = $('#input');
+            const listContainer = $('#list-container');
+
+            $('#btn-save').click(function(){
+                const li = `<li class="mb-2 border px-4 py-3"> 
+                                <input class="check-box" type="checkbox" > <span class="task ms-3"> ${input.val()} </span> 
+                            </li>`
+                listContainer.append(li);
+                input.val("");
+            })
+            listContainer.on('click', '.check-box', function(){
+                $(this).siblings('.task').toggleClass('completed');
+            })
+        })
+    </script>
+</html>
